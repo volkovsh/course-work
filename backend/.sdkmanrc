@@ -1,0 +1,3 @@
+# Для сборки и запуска этого проекта нужна Java 17.
+# В терминале с SDKMAN: sdk use java 17.0.18-tem (или sdk install java 17.0.18-tem)
+java=17.0.18-tem

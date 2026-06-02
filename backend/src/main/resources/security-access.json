@@ -1,0 +1,5 @@
+{
+  "blocked_ips": [],
+  "blocked_paths": [],
+  "auth_rate_limit_per_minute": 30
+}

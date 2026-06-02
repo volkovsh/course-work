@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 — Сетевая игра</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1 class="title">2048</h1>
+            <div class="scores">
+                <div class="score-box">
+                    <span class="score-label">Счёт</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">Лучший</span>
+                    <span id="best">0</span>
+                </div>
+            </div>
+            <div class="auth-section">
+                <img id="user-avatar" class="user-avatar hidden" alt="Аватар" width="40" height="40">
+                <span id="user-name" class="user-name"></span>
+                <button type="button" id="btn-login" class="btn btn-secondary">Вход</button>
+                <button type="button" id="btn-register" class="btn btn-secondary">Регистрация</button>
+                <button type="button" id="btn-logout" class="btn btn-secondary hidden">Выйти</button>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <div id="game-over" class="overlay hidden" style="display: none;">
+                <p>Игра окончена</p>
+                <button type="button" id="btn-restart-over" class="btn btn-primary">Играть снова</button>
+            </div>
+            <div id="win-overlay" class="overlay overlay-win hidden" style="display: none;">
+                <p>Победа! 2048</p>
+                <button type="button" id="btn-continue" class="btn btn-primary">Продолжить</button>
+            </div>
+            <div id="grid-container" class="grid-container" style="min-width: 320px; min-height: 320px;">
+                <div class="grid-background" id="grid-bg"></div>
+                <div id="tiles" class="tiles"></div>
+            </div>
+            <p class="hint">Используйте стрелки или свайпы</p>
+        </div>
+
+        <aside class="sidebar">
+            <button type="button" id="btn-restart" class="btn btn-primary">Новая игра</button>
+            <button type="button" id="btn-save" class="btn btn-secondary">Сохранить результат</button>
+            <section id="profile-section" class="profile-section hidden">
+                <h2>Профиль</h2>
+                <div class="profile-avatar-row">
+                    <img id="profile-avatar" class="profile-avatar hidden" alt="Аватар" width="64" height="64">
+                    <label class="btn btn-secondary avatar-upload-label">
+                        Загрузить аватар
+                        <input type="file" id="avatar-input" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                    </label>
+                </div>
+                <div class="profile-save-row">
+                    <button type="button" id="btn-save-game" class="btn btn-secondary">Сохранить партию на сервер</button>
+                    <button type="button" id="btn-load-game" class="btn btn-secondary">Загрузить партию</button>
+                    <button type="button" id="btn-export-save" class="btn btn-secondary">Экспорт JSON</button>
+                    <label class="btn btn-secondary avatar-upload-label">
+                        Импорт JSON
+                        <input type="file" id="import-save-input" accept="application/json" hidden>
+                    </label>
+                </div>
+                <p id="profile-hint" class="profile-hint"></p>
+            </section>
+            <section class="leaderboard">
+                <h2>Таблица рекордов</h2>
+                <ul id="leaderboard-list"></ul>
+            </section>
+            <section class="my-stats">
+                <h2>Мои игры</h2>
+                <ul id="my-records-list"></ul>
+            </section>
+        </aside>
+    </div>
+
+    <div id="modal-auth" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close">&times;</span>
+            <h2 id="modal-title">Вход</h2>
+            <form id="auth-form">
+                <input type="text" id="auth-username" placeholder="Имя пользователя" required autocomplete="username">
+                <input type="password" id="auth-password" placeholder="Пароль" required autocomplete="current-password">
+                <p id="auth-error" class="error-msg"></p>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
